@@ -27,6 +27,10 @@ class Cart(models.Model):
     class Meta:
         unique_together = ('menuitem','user','id')
 
+    def __str__(self):
+        return f"{self.menuitem.title} +' ' +{self.quantity}"
+
+
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     delivery_crew = models.ForeignKey(User, on_delete=models.CASCADE, related_name='delivery_crew',null=True)

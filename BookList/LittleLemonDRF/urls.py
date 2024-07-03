@@ -9,6 +9,7 @@ router.register('manager/users',views.ManagerUserView)
 router.register('delivery_crew/users',views.deliveryCrewUserView, basename='delivery_crew')
 router.register('cart/menu-items', views.CartAPIView, basename='cart')
 router.register('category',views.CategoryView,basename='category')
+router.register('orders',views.OrderItemView,basename='orders')
 urlpatterns = [
     path('',include(router.urls)),
 

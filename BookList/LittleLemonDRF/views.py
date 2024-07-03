@@ -121,6 +121,14 @@ class CartAPIView(viewsets.ModelViewSet):
     def clear_cart(self, request):
         user = request.user
         models.Cart.objects.filter(user=user).delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({'message':'Empty cart!'},status=200)
 
     
+class OrderItemView(viewsets.ModelViewSet):
+    serializer_class = serializers.OrderItemSerializer
+    permission_classes = [IsAuthenticated]
+    pagination_class = StandardResultsSetPagination
+
+    def get_queryset(self):
+        user = self.request.user
+        return models.OrderItem.objects.filter(order=user)
